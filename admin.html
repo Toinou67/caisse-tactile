@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Ventes</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: linear-gradient(to right, #ffe2e2, #ffd1d1); padding: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #999; padding: 8px; text-align: left; }
+    th { background-color: #ffb3b3; }
+    td { background-color: #ffe6e6; }
+    tr:nth-child(even) td { background-color: #ffdada; }
+    button { margin: 10px 0; padding: 10px 20px; background-color: #ff7f7f; border: none; color: white; cursor: pointer; }
+    button:hover { background-color: #ff4c4c; }
+  </style>
+</head>
+<body>
+  <h1>Admin - Ventes</h1>
+  <button onclick="window.location.href='/admin/export'">📥 Télécharger Excel</button>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Caisse</th>
+      <th>Panier</th>
+      <th>Total (€)</th>
+    </tr>
+    {% for v in ventes %}
+    <tr>
+      <td>{{v.date}}</td>
+      <td>{{v.caisse}}</td>
+      <td>{{ v.panier | map(attribute='nom') | join(', ') }} </td>
+      <td>{{v.total}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
